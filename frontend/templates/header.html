@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HR Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light" id="sidebarToggle">
+                <i class="bi bi-list"></i> Menu
+            </button>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 bg-dark text-white p-3 vh-100 collapse d-md-block" id="sidebarMenu">
+                <h4 class="text-center mb-4">CodeSofy</h4>
+
+                <div class="accordion accordion-flush" id="sidebarAccordion">
+
+                    <!-- Dashboard -->
+                    <div class="accordion-item bg-dark text-white border-0">
+                        <h2 class="accordion-header">
+                            <a href="/employees"
+                                class="accordion-button collapsed bg-dark text-white text-decoration-none">
+                                <i class="bi  bi-people-fill me-2"></i> Employees
+                            </a>
+                        </h2>
+                    </div>
+
+                    <!-- Logout -->
+                    <div class="accordion-item bg-dark text-white border-0">
+                        <h2 class="accordion-header">
+                            <a href="/logout" class="accordion-button bg-dark text-white text-decoration-none">
+                                <i class="bi bi-box-arrow-right me-2"></i> Logout
+                            </a>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>

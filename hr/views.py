@@ -20,3 +20,8 @@ def hrAuth(request):
             return render(request, 'index.html', context)
 
     return render(request, 'index.html')
+
+
+def hr_logout(request):
+    logout(request)
+    return redirect('/')

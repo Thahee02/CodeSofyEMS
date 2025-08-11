@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('', views.hrAuth, name='hrAuth'),
+    path('', hrAuth, name='hrAuth'),
+    path('logout/', hr_logout, name='hr_logout'),
 ]

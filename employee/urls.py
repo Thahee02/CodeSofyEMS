@@ -1,4 +1,7 @@
 from django.urls import path
-from . import views
+from .views import *
 
-urlpatterns = []
+urlpatterns = [
+    path('', hr_dashboard, name='hr_dashboard'),
+    path('add_employee/', add_employee, name='add_employee'),
+]
