@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Employee(models.Model):
-    employee_id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='employee_images/', blank=True, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

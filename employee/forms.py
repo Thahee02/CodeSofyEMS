@@ -5,7 +5,20 @@ class EmployeeForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = '__all__'
+        fields = [
+            'image',
+            'first_name',
+            'last_name',
+            'dob',
+            'nic',
+            'passport',
+            'mobile',
+            'telephone',
+            'email',
+            'address',
+            'status',
+            'remarks'
+        ]
 
         widgets = {
             'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
@@ -14,8 +27,8 @@ class EmployeeForm(forms.ModelForm):
             'dob': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'nic': forms.TextInput(attrs={'class': 'form-control'}),
             'passport': forms.TextInput(attrs={'class': 'form-control'}),
-            'mobile': forms.TextInput(attrs={'class': 'form-control'}),
-            'telephone': forms.TextInput(attrs={'class': 'form-control'}),
+            'mobile': forms.NumberInput(attrs={'class': 'form-control'}),
+            'telephone': forms.NumberInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'status': forms.Select(attrs={'class': 'form-control'}),
