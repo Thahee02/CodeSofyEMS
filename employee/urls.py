@@ -7,4 +7,5 @@ urlpatterns = [
     path('edit_employee/<int:employee_id>/', edit_employee, name='edit_employee'),
     path('delete_employee/<int:employee_id>/', delete_employee, name='delete_employee'),
     path('view_employee/<int:employee_id>/', view_employee, name='view_employee'),
+    path('employees_excel/', employees_excel, name='employees_excel'),
 ]

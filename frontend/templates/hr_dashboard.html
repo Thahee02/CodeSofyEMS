@@ -8,62 +8,76 @@
       <div class="container">
         <h1 class="mb-4">All Employees</h1>
         <p>Welcome to the HR Dashboard. Here you can manage employee records, view reports, and perform other HR-related tasks.</p>
-        <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-between align-items-center">
           <a href="{% url 'add_employee' %}" class="btn btn-primary">Add New Employee</a>
+          <form method="GET" action="{% url 'hr_dashboard' %}" class="">
+            <div class="input-group">
+              <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by ID, name or NIC...">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
+          <a href="{% url 'employees_excel' %}" class="btn btn-success ms-2">Export All Employees</a>
         </div>
 
         <div class="table-responsive">
-                  <table class="table table-striped table-bordered">
-                    <thead class="bg-w">
-                      <tr>
-                        <th>Profile</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>DOB</th>
-                        <th>NIC</th>
-                        <th>Passport</th>
-                        <th>Mobile</th>
-                        <th>Telephone</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for employee in employees %}
-                      <tr>
-                        <td>
-                          {% if employee.image %}
-                          <img src="{{ employee.image.url }}" alt="Profile Image" style="width: 60px; height: 60px; border-radius: 5%;">
-                          {% else %}
-                          No Image
-                          {% endif %}
-                        </td>
-                        <td>{{ employee.first_name }}</td>
-                        <td>{{ employee.last_name }}</td>
-                        <td>{{ employee.dob }}</td>
-                        <td>{{ employee.nic }}</td>
-                        <td>{{ employee.passport }}</td>
-                        <td>{{ employee.mobile }}</td>
-                        <td>{{ employee.telephone }}</td>
-                        <td>{{ employee.email }}</td>
-                        <td>{{ employee.address }}</td>
-                        {% if employee.status == 'active' %}
-                        <td class="text-success text-capitalize">{{ employee.status }}</td>
-                        {% else %}
-                        <td class="text-danger text-capitalize">{{ employee.status }}</td>
-                        {% endif %}
-                        <td>
-                          <a href="{% url 'edit_employee' employee.id %}" class="btn btn-sm btn-warning m-1">Edit</a><br>
-                          <a href="{% url 'view_employee' employee.id %}" class="btn btn-sm btn-primary m-1">View</a><br>
-                          <a href="{% url 'delete_employee' employee.id %}" class="btn btn-sm btn-danger m-1" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
-                        </td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  
-                  </table>
+          <table class="table table-striped table-bordered">
+            <thead class="bg-w">
+              <tr>
+                <th>Profile</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>NIC</th>
+                <th>Passport</th>
+                <th>Mobile</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if employees %}
+                {% for employee in employees %}
+                <tr>
+                  <td>
+                    {% if employee.image %}
+                    <img src="{{ employee.image.url }}" alt="Profile Image" style="width: 60px; height: 60px; border-radius: 1%;">
+                    {% else %}
+                    No Image
+                    {% endif %}
+                  </td>
+                  <td>{{ employee.first_name }}</td>
+                  <td>{{ employee.last_name }}</td>
+                  <td>{{ employee.dob }}</td>
+                  <td>{{ employee.nic }}</td>
+                  <td>{{ employee.passport }}</td>
+                  <td>{{ employee.mobile }}</td>
+                  <td>{{ employee.telephone }}</td>
+                  <td>{{ employee.email }}</td>
+                  <td>{{ employee.address }}</td>
+                  {% if employee.status == 'active' %}
+                  <td class="text-success text-capitalize">{{ employee.status }}</td>
+                  {% else %}
+                  <td class="text-danger text-capitalize">{{ employee.status }}</td>
+                  {% endif %}
+                  <td>
+                    <a href="{% url 'edit_employee' employee.id %}" class="btn btn-sm btn-warning m-1">Edit</a><br>
+                    <a href="{% url 'view_employee' employee.id %}" class="btn btn-sm btn-primary m-1">View</a><br>
+                    <a href="{% url 'delete_employee' employee.id %}" class="btn btn-sm btn-danger m-1"
+                      onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              {% else %}
+              <tr>
+                <td colspan="12" class="text-center text-muted">No employees found.</td>
+              </tr>
+              {% endif %}
+            </tbody>
+          
+          </table>
         </div>
         
       </div>
