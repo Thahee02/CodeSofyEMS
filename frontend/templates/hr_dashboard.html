@@ -14,9 +14,8 @@
 
         <div class="table-responsive">
                   <table class="table table-striped table-bordered">
-                    <thead>
+                    <thead class="bg-w">
                       <tr>
-                        <th>Employee ID</th>
                         <th>Profile</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -34,7 +33,6 @@
                     <tbody>
                       {% for employee in employees %}
                       <tr>
-                        <td>{{ employee.id }}</td>
                         <td>
                           {% if employee.image %}
                           <img src="{{ employee.image.url }}" alt="Profile Image" style="width: 60px; height: 60px; border-radius: 5%;">
@@ -52,13 +50,14 @@
                         <td>{{ employee.email }}</td>
                         <td>{{ employee.address }}</td>
                         {% if employee.status == 'active' %}
-                        <td class="text-success">{{ employee.status }}</td>
+                        <td class="text-success text-capitalize">{{ employee.status }}</td>
                         {% else %}
-                        <td class="text-danger">{{ employee.status }}</td>
+                        <td class="text-danger text-capitalize">{{ employee.status }}</td>
                         {% endif %}
                         <td>
-                          <a href="{% url 'edit_employee' employee.id %}" class="btn btn-sm btn-warning">Edit</a>
-                  
+                          <a href="{% url 'edit_employee' employee.id %}" class="btn btn-sm btn-warning m-1">Edit</a><br>
+                          <a href="{% url 'view_employee' employee.id %}" class="btn btn-sm btn-primary m-1">View</a><br>
+                          <a href="{% url 'delete_employee' employee.id %}" class="btn btn-sm btn-danger m-1" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
                         </td>
                       </tr>
                       {% endfor %}

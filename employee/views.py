@@ -7,11 +7,9 @@ def hr_dashboard(request):
     return render(request, 'hr_dashboard.html', {'employees': employees})
 
 def add_employee(request):
-    
-    context = {
-        'employee_form': EmployeeForm(),
-        'error_message': ""
-    }
+
+    if not request.user.is_authenticated:
+        return redirect('/login')
 
     if request.method == 'POST':
         form = EmployeeForm(request.POST, request.FILES)
@@ -20,6 +18,11 @@ def add_employee(request):
             return redirect('/employees')
     else:
         form = EmployeeForm()
+
+    context = {
+        'employee_form': form,
+        'error_message': ""
+    }
 
     return render(request, 'add_employee.html', context)
 
@@ -45,3 +48,24 @@ def edit_employee(request, employee_id):
         form = EmployeeForm(instance=employee)
 
     return render(request, 'edit_employee.html', context)
+
+
+def delete_employee(request, employee_id):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+
+    employee = Employee.objects.get(id=employee_id)
+    employee.delete()
+    return redirect('/employees')
+
+def view_employee(request, employee_id):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+    
+    employee = Employee.objects.get(id=employee_id)
+
+    context = {
+        'employee': employee
+    }
+
+    return render(request, 'view_employee.html', context)
