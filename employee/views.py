@@ -91,9 +91,6 @@ def view_employee(request, employee_id):
 
 
 def employees_excel(request):
-
-    if not request.user.is_authenticated:
-        return redirect('/login')
     
     if not request.user.is_authenticated:
         return redirect('/login')
